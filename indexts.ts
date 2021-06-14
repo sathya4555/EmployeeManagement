@@ -521,30 +521,7 @@ app.delete("/employee/:id", async (req,res) =>{
 
 
 
-app.get('/details/:regn_no', async(req, res, next) => {
 
-      const regn_no = req.params.regn_no;
-
-      const results = [];
-
-/*
-        const query = pool.query('select * from employee where id= $1',[regn_no]);
-        query.on('row', (row) => {
-          results.push(row);
-        });
-        query.on('end', () => {
-          //done();
-          return res.json(results);*/
-
-          await pool.connect();
-          var res = await pool.query("select * from employee where id= $1',[regn_no]");
-          res.rows.forEach(row=>{
-            results.push(row);
-          });
-          await pool.end();       
-
-
-        });
 
 
 
