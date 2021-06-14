@@ -1,4 +1,4 @@
-# EmployeeManagement System
+# EmployeeManagement System- NodeJS PostgresQL Typescript Swagger
 
  main file - indexts.ts
  PORT: 8811
