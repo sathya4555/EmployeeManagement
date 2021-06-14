@@ -1,3 +1,34 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@sathya4555 
+sathya4555
+/
+EmployeeManagement
+1
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+EmployeeManagement/indexts.ts /
+@sathya4555
+sathya4555 Add files via upload
+Latest commit 9e0dba1 1 hour ago
+ History
+ 1 contributor
+527 lines (438 sloc)  12.3 KB
+  
 
 
 const express = require('express')
@@ -34,13 +65,13 @@ async function connect(){
     const amqpServer="amqp://localhost:5672";
     connection=await amqp.connect(amqpServer)
     channel= await connection.createChannel();
-    await channel.assertQueue("ORDER")
+    await channel.assertQueue("q2")
 }
 
 connect().then(()=>{
-    channel.consume("ORDER",data =>{
+    channel.consume("q2",data =>{
         const {id,name,department}=JSON.parse(data.content)
-        console.log("Consuming ORDER")
+        console.log("Consuming q2")
         console.log(id,
              name,
              department)
@@ -166,7 +197,6 @@ app.post("/employee/post", async(req,res)=>{
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     
       <title>EXAM</title>
-
       <style>
     .ii{
         width:300px;
@@ -249,7 +279,7 @@ app.get('/employee/sort/id',async(req,res)=>{
         })*/
        
        
-        const employee_data=await pool.query("SELECT * FROM EMPLOYEE ORDER BY id ASC;");
+        const employee_data=await pool.query("SELECT * FROM EMPLOYEE q2 BY id ASC;");
         res.json(employee_data.rows);
          var data=employee_data.rows
         console.log(data);
@@ -274,7 +304,7 @@ app.get('/employee/sort/name',async(req,res)=>{
         })*/
        
        
-        const employee_data=await pool.query("SELECT * FROM EMPLOYEE ORDER BY name ASC;");
+        const employee_data=await pool.query("SELECT * FROM EMPLOYEE q2 BY name ASC;");
         res.json(employee_data.rows);
          var data=employee_data.rows
         console.log(data);
@@ -330,7 +360,7 @@ app.post("/employee/search/id", async(req,res)=>{
  app.get('/sortemployee/name',async(req,res)=>{
     try{
        
-        const employee_data=await pool.query("SELECT * FROM EMPLOYEE ORDER BY name ASC;");
+        const employee_data=await pool.query("SELECT * FROM EMPLOYEE q2 BY name ASC;");
         res.json(employee_data.rows);
         //console.log(req.body);
       //  res.json(req.body); 
@@ -358,7 +388,7 @@ app.post("/employee/search/id", async(req,res)=>{
 
  app.get('/sortemployee/department',async(req,res)=>{
     try{
-        const employee_data=await pool.query("SELECT * FROM EMPLOYEE ORDER BY department ASC;");
+        const employee_data=await pool.query("SELECT * FROM EMPLOYEE q2 BY department ASC;");
         res.json(employee_data.rows);
         console.log(req.body);
         res.json(req.body); 
@@ -499,7 +529,6 @@ app.get('/details/:regn_no', async(req, res, next) => {
 
 /*
         const query = pool.query('select * from employee where id= $1',[regn_no]);
-
         query.on('row', (row) => {
           results.push(row);
         });
@@ -525,3 +554,16 @@ app.get('/details/:regn_no', async(req, res, next) => {
 app.listen(8811,()=>{
     console.log("Server 8811");
 })
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
