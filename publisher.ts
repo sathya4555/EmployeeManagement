@@ -1,3 +1,34 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@sathya4555 
+sathya4555
+/
+EmployeeManagement
+1
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+EmployeeManagement/publisher.ts /
+@sathya4555
+sathya4555 Add files via upload
+Latest commit e6944ab 1 hour ago
+ History
+ 1 contributor
+134 lines (115 sloc)  3.14 KB
+  
 const express1 = require('express')
 const morgan1 = require('morgan')
 const app1 = express1()
@@ -16,7 +47,7 @@ async function connect1(){
     const amqpServer="amqp://localhost:5672";
     connection=await amqp1.connect(amqpServer)
     channel= await connection.createChannel();
-    await channel.assertQueue("PRODUCT")
+    await channel.assertQueue("q1")
 }
 
 const access1=fs1.createWriteStream(__dirname + "/info.log",{flags:"a"})
@@ -107,7 +138,7 @@ app1.get("/employee/:id/:name/:depatment", async(req,res)=>{
        // res.json(employee_data.rows[0]);
         //console.log(req.body);
       //  res.json(req.body); 
-        channel.sendToQueue("ORDER", Buffer.from(JSON.stringify({
+        channel.sendToQueue("q2", Buffer.from(JSON.stringify({
             id,
             name,
             department
@@ -131,4 +162,16 @@ connect1()
 app1.listen(9090,()=>{
     console.log("Server 9090");
 })
-
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
