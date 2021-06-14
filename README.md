@@ -1,20 +1,22 @@
 # EmployeeManagement System
 
-# main file - indexts.ts
+ main file - indexts.ts
 
-# User Swagger
+ User Swagger
 
-# Written in TS file
+ Written in TS file
 
-# SQL used is PostgresQL
+ SQL used is PostgresQL
 
-# Containerized using Docker
+ Containerized using Docker
 
-# Sorting of Employee
+ Sorting of Employee
 
-# Implemented POST, GET, PUT, DELETE
+ Implemented POST, GET, PUT, DELETE
 
-# Search using Employee ID using SQL query
+ Search using Employee ID using SQL query
 
-# Logs will be saved as text format with date
+ Logs will be saved as text format with date
+ 
+ Used POSTMASTER fro testing 
 
